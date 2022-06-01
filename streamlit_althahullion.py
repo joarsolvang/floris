@@ -25,8 +25,8 @@ fi = FlorisInterface("examples/inputs/altahullion.yaml")
 fig_viz, axarr_viz = plt.subplots(2)
 print('Loading: ')
 # Set the layout, wind direction and wind speed
-wind_speeds = range(6, 16, 3)
-wind_directions = range(0, 361, 1)
+wind_speeds = np.arange(6, 16, 3)
+wind_directions = np.arange(0, 361,1)
 fi.reinitialize(wind_speeds=wind_speeds, wind_directions=wind_directions)
 
 df_wr = pd.read_csv("examples/inputs/wind_rose_altahullion.csv")
@@ -9404,7 +9404,7 @@ if display == "both":
        [0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0., 0.]]
      ])
         st.session_state["nrel_yaw"] = nrel_yaw
-    if "yaw_opt_sr" not in st.session_state.keys():
+    if "df_opt_sr" not in st.session_state.keys():
         # Convert back to the original ws/wd shape
         # Carry out yaw angle optimization
         start_time = timerpc()
@@ -18848,8 +18848,8 @@ wind_speed = st.sidebar.slider("Wind Speed", float(wind_speeds[0]), float(wind_s
 wind_direction = st.sidebar.slider("Wind Direction", float(wind_directions[0]), float(wind_directions[-1]), float(wind_directions[0]), step=float(np.diff(wind_directions[0:2])))
 turbine_nr = st.sidebar.slider("Turbine Number", 0., float(len(fi.layout_x)), 1., step=1.)
 
-wind_speed_index = wind_speeds.index(int(wind_speed))
-wind_direction_index = wind_directions.index(int(wind_direction))
+wind_speed_index = list(ws_array).index(int(wind_speed))
+wind_direction_index = list(wd_array).index(int(wind_direction))
 
 if display.lower() == "both":
     horizontal_plane = fi.calculate_horizontal_plane(x_resolution=1000, y_resolution=1000, wd=[int(wind_direction)],
@@ -18862,7 +18862,7 @@ if display.lower() == "both":
 
     horizontal_plane = fi.calculate_horizontal_plane(x_resolution=1000, y_resolution=1000, wd=[int(wind_direction)],
                                                      ws=[int(wind_speed)],
-                                                     yaw_angles=st.session_state.yaw_opt_sr.yaw_angles_opt[
+                                                     yaw_angles=st.session_state.df_opt_sr[
                                                                 wind_direction_index:wind_direction_index + 1,
                                                                 wind_speed_index:wind_speed_index + 1, :],
                                                      height=49.0)
@@ -18901,10 +18901,10 @@ if display.lower() == "both":
     axarr_viz1.plot(wind_directions, st.session_state.nrel_yaw[:, wind_speed_index, int(turbine_nr)], '-b', label=f"NREL")
     axarr_viz1.plot(wind_directions, st.session_state.df_opt_sr[:, wind_speed_index, int(turbine_nr)], '--r', label=f"Floris")
 elif  display.upper() == "NREL":
-    axarr_viz1.plot(wind_directions, st.session_state.yaw_opt_sr.yaw_angles_opt[:, wind_speed_index, int(turbine_nr)],
+    axarr_viz1.plot(wind_directions, st.session_state.nrel_yaw[:, wind_speed_index, int(turbine_nr)],
                     label=f"NREL")
 elif display.lower() == "optimisation":
-    axarr_viz1.plot(wind_directions, st.session_state.yaw_opt_sr.yaw_angles_opt[:, wind_speed_index, int(turbine_nr)],
+    axarr_viz1.plot(wind_directions, st.session_state.df_opt_sr[:, wind_speed_index, int(turbine_nr)],
                     label=f"Floris")
 axarr_viz1.set_xlim([0, 360])
 axarr_viz1.set_ylim([0, 30])
