@@ -36,7 +36,7 @@ shown in several plots.
 
 def load_floris():
     # Load the default example floris object
-    fi = FlorisInterface("inputs/gch.yaml") # GCH model matched to the default "legacy_gauss" of V2
+    fi = FlorisInterface("inputs/corlacky.yaml") # GCH model matched to the default "legacy_gauss" of V2
     # fi = FlorisInterface("inputs/cc.yaml") # New CumulativeCurl model
 
     # Specify wind farm layout and update in the floris object

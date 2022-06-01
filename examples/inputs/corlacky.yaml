@@ -1,11 +1,10 @@
-
-name: GCH
-description: Three turbines using Gauss Curl Hybrid model
+name: Corlacky
+description: Corlacky Optimisation
 floris_version: v3.0.0
 
 logging:
   console:
-    enable: true
+    enable: false
     level: WARNING
   file:
     enable: false
@@ -13,24 +12,42 @@ logging:
 
 solver:
   type: turbine_grid
-  turbine_grid_points: 3
+  turbine_grid_points: 10
 
 farm:
   layout_x:
-  - 0.0
-  - 630.0
-  - 1260.0
+  - 473503.0682
+  - 473541.0142
+  - 473612.0498
+  - 474707.0485
+  - 474800.0262
+  - 475517.0601
+  - 486590.0576
+  - 487667.2185
+  - 483638.035
+  - 482461.0194
+  - 482440.0479
+  - 481994.0506
   layout_y:
-  - 0.0
-  - 0.0
-  - 0.0
+  - 5508205.807
+  - 5507696.743
+  - 5507008.74
+  - 5508197.823
+  - 5507423.79
+  - 5507375.805
+  - 5502468.734
+  - 5502515.918
+  - 5503759.736
+  - 5502393.798
+  - 5500662.807
+  - 5499739.816
   turbine_type:
   - nrel_5MW
 
 flow_field:
   air_density: 1.225
   reference_wind_height: -1 # -1 is code for use the hub height
-  turbulence_intensity: 0.06
+  turbulence_intensity: 0.1
   wind_directions:
   - 270.0
   wind_shear: 0.12
@@ -41,7 +58,7 @@ flow_field:
 wake:
   model_strings:
     combination_model: sosfs
-    deflection_model: jimenez
+    deflection_model: gauss
     turbulence_model: crespo_hernandez
     velocity_model: cc
 

@@ -53,7 +53,8 @@ fi.calculate_wake()
 
 # Setup the optimization problem
 model = opt.layout.Layout(fi, boundaries, freq)
-tmp = opt.optimization.Optimization(model=model, solver='SLSQP')
+tmp = opt.optimization.Optimization(model=model, solver='ALPSO')
+# ['SNOPT', 'IPOPT', 'SLSQP', 'NLPQLP', 'FSQP', 'NSGA2', 'PSQP', 'ParOpt', 'CONMIN', 'ALPSO']
 
 # Run the optimization
 sol = tmp.optimize()

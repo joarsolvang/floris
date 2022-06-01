@@ -1,0 +1,209 @@
+                                     ======================
+                                        ALPSO 1.1 (Serial)
+                                     ======================
+
+Parameters:
+-------------------------------------------------------------------------------------------------
+Swarmsize           :       40    MaxOuterIters     :      200    Seed:                0.00000000
+Cognitive Parameter :    2.000    MaxInnerIters     :        6    Scaling            :          1
+Social Parameter    :    1.000    MinInnerIters     :        6    Stopping Criteria  :          1
+Initial Weight      :    0.990    DynInnerIters     :        0    Number of Failures :         15
+Final Weight        :    0.550    StoppingIters     :        5    Number of Successes:          5
+
+Absolute Tolerance  : 1.00e-02    Number Initial Pos:        1    Neighbourhood Model:      gbest
+Relative Tolerance  : 1.00e-02    Initial Velocity  :        1    Neighbourhood Size :         40
+Inequality Tolerance: 1.00e-03    Maximum Velocity  :        2    Selfless           :          1
+Equality Tolerance  : 1.00e-03    Craziness Velocity: 1.00e-04    Fileout            :          1
+Global Distance     : 1.00e-01    Initial Penalty   :     1.00    File Name          :  ALPSO.out
+-------------------------------------------------------------------------------------------------
+
+
+================================================================================
+
+NUMBER OF ITERATIONS: 1
+
+NUMBER OF OBJECTIVE FUNCTION EVALUATIONS: 280
+
+OBJECTIVE FUNCTION VALUE:
+	F = -1.037081679822218
+
+EQUALITY CONSTRAINTS VALUES:
+
+INEQUALITY CONSTRAINTS VALUES:
+	G(0) = 0
+	G(1) = 0
+	G(2) = 0
+	G(3) = 0
+	G(4) = -2.965481379531729
+
+LAGRANGIAN MULTIPLIERS VALUES:
+	L(0) = 0
+	L(1) = 0
+	L(2) = 0
+	L(3) = 0
+	L(4) = 0
+
+PENALTY FACTOR:
+	rp(0) = 1
+	rp(1) = 1
+	rp(2) = 1
+	rp(3) = 1
+	rp(4) = 1
+
+BEST POSITION:
+	P(0) = 0		P(1) = 1		P(2) = 0	
+	P(3) = 1		P(4) = 1		P(5) = 0	
+	P(6) = 0		P(7) = 1	
+================================================================================
+
+================================================================================
+
+NUMBER OF ITERATIONS: 2
+
+NUMBER OF OBJECTIVE FUNCTION EVALUATIONS: 520
+
+OBJECTIVE FUNCTION VALUE:
+	F = -1.037081679822218
+
+EQUALITY CONSTRAINTS VALUES:
+
+INEQUALITY CONSTRAINTS VALUES:
+	G(0) = 0
+	G(1) = 0
+	G(2) = 0
+	G(3) = 0
+	G(4) = -2.965481379531729
+
+LAGRANGIAN MULTIPLIERS VALUES:
+	L(0) = 0
+	L(1) = 0
+	L(2) = 0
+	L(3) = 0
+	L(4) = 0
+
+PENALTY FACTOR:
+	rp(0) = 1
+	rp(1) = 1
+	rp(2) = 1
+	rp(3) = 1
+	rp(4) = 1
+
+BEST POSITION:
+	P(0) = 0		P(1) = 1		P(2) = 0	
+	P(3) = 1		P(4) = 1		P(5) = 0	
+	P(6) = 0		P(7) = 1	
+================================================================================
+
+================================================================================
+
+NUMBER OF ITERATIONS: 3
+
+NUMBER OF OBJECTIVE FUNCTION EVALUATIONS: 760
+
+OBJECTIVE FUNCTION VALUE:
+	F = -1.037081694504828
+
+EQUALITY CONSTRAINTS VALUES:
+
+INEQUALITY CONSTRAINTS VALUES:
+	G(0) = 0
+	G(1) = 0
+	G(2) = 0
+	G(3) = 0
+	G(4) = -2.965480514260211
+
+LAGRANGIAN MULTIPLIERS VALUES:
+	L(0) = 0
+	L(1) = 0
+	L(2) = 0
+	L(3) = 0
+	L(4) = 0
+
+PENALTY FACTOR:
+	rp(0) = 1
+	rp(1) = 1
+	rp(2) = 1
+	rp(3) = 1
+	rp(4) = 1
+
+BEST POSITION:
+	P(0) = 0		P(1) = 1		P(2) = 0	
+	P(3) = 1		P(4) = 0.9999995639974499		P(5) = 0	
+	P(6) = 0		P(7) = 1	
+================================================================================
+
+================================================================================
+
+NUMBER OF ITERATIONS: 4
+
+NUMBER OF OBJECTIVE FUNCTION EVALUATIONS: 1000
+
+OBJECTIVE FUNCTION VALUE:
+	F = -1.037081694504828
+
+EQUALITY CONSTRAINTS VALUES:
+
+INEQUALITY CONSTRAINTS VALUES:
+	G(0) = 0
+	G(1) = 0
+	G(2) = 0
+	G(3) = 0
+	G(4) = -2.965480514260211
+
+LAGRANGIAN MULTIPLIERS VALUES:
+	L(0) = 0
+	L(1) = 0
+	L(2) = 0
+	L(3) = 0
+	L(4) = 0
+
+PENALTY FACTOR:
+	rp(0) = 1
+	rp(1) = 1
+	rp(2) = 1
+	rp(3) = 1
+	rp(4) = 1
+
+BEST POSITION:
+	P(0) = 0		P(1) = 1		P(2) = 0	
+	P(3) = 1		P(4) = 0.9999995639974499		P(5) = 0	
+	P(6) = 0		P(7) = 1	
+================================================================================
+
+================================================================================
+
+NUMBER OF ITERATIONS: 5
+
+NUMBER OF OBJECTIVE FUNCTION EVALUATIONS: 1240
+
+OBJECTIVE FUNCTION VALUE:
+	F = -1.037081695545813
+
+EQUALITY CONSTRAINTS VALUES:
+
+INEQUALITY CONSTRAINTS VALUES:
+	G(0) = 0
+	G(1) = 0
+	G(2) = 0
+	G(3) = 0
+	G(4) = -2.965480656902396
+
+LAGRANGIAN MULTIPLIERS VALUES:
+	L(0) = 0
+	L(1) = 0
+	L(2) = 0
+	L(3) = 0
+	L(4) = 0
+
+PENALTY FACTOR:
+	rp(0) = 1
+	rp(1) = 1
+	rp(2) = 1
+	rp(3) = 1
+	rp(4) = 1
+
+BEST POSITION:
+	P(0) = 0		P(1) = 1		P(2) = 0	
+	P(3) = 1		P(4) = 0.9999996358605892		P(5) = 0	
+	P(6) = 0		P(7) = 1	
+================================================================================

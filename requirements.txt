@@ -16,3 +16,11 @@ shapely
 # utilities
 pytest
 coloredlogs
+
+
+##########
+  - pip:
+    - --extra-index-url http://res-python-packages/
+    - --trusted-host res-python-packages 
+    - --extra-index-url https://test.pypi.org/simple/
+    - python-dotenv

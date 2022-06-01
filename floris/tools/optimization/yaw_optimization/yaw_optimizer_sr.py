@@ -25,17 +25,17 @@ from .yaw_optimization_base import YawOptimization
 
 class YawOptimizationSR(YawOptimization):
     def __init__(
-        self,
-        fi,
-        minimum_yaw_angle=0.0,
-        maximum_yaw_angle=25.0,
-        yaw_angles_baseline=None,
-        x0=None,
-        Ny_passes=[5, 4],  # Optimization options
-        turbine_weights=None,
-        exclude_downstream_turbines=True,
-        exploit_layout_symmetry=True,
-        verify_convergence=False,
+            self,
+            fi,
+            minimum_yaw_angle=0.0,
+            maximum_yaw_angle=25.0,
+            yaw_angles_baseline=None,
+            x0=None,
+            Ny_passes=[5, 4],  # Optimization options
+            turbine_weights=None,
+            exclude_downstream_turbines=True,
+            exploit_layout_symmetry=True,
+            verify_convergence=False,
     ):
         """
         Instantiate YawOptimizationSR object with a FlorisInterface object
@@ -66,8 +66,8 @@ class YawOptimizationSR(YawOptimization):
             if Ny < 2:
                 raise ValueError("Each entry in Ny_passes must have a value of at least 2.")
             if (Nii > 0) & ((Ny + 1) % 2 == 0):
-                raise ValueError("The second and further entries of Ny_passes must be even numbers. " + 
-                    "This is to ensure the same yaw angles are not evaluated twice between passes.")
+                raise ValueError("The second and further entries of Ny_passes must be even numbers. " +
+                                 "This is to ensure the same yaw angles are not evaluated twice between passes.")
 
         # # Set baseline and optimization settings
         # if reduce_ngrid:
@@ -89,15 +89,14 @@ class YawOptimizationSR(YawOptimization):
         turbines_ordered_array = []
         for wd in self.fi_subset.floris.flow_field.wind_directions:
             layout_x_rot = (
-                np.cos((wd - 270.0) * np.pi / 180.0) * layout_x
-                - np.sin((wd - 270.0) * np.pi / 180.0) * layout_y
+                    np.cos((wd - 270.0) * np.pi / 180.0) * layout_x
+                    - np.sin((wd - 270.0) * np.pi / 180.0) * layout_y
             )
             turbines_ordered = np.argsort(layout_x_rot)
             turbines_ordered_array.append(turbines_ordered)
         self.turbines_ordered_array_subset = np.vstack(turbines_ordered_array)
 
-
-    def _calc_powers_with_memory(self, yaw_angles_subset, use_memory=True):
+    def _calc_powers_with_memory(self, yaw_angles_subset, use_memory=False):
         # Define current optimal solutions and floris wind directions locally
         yaw_angles_opt_subset = self._yaw_angles_opt_subset
         farm_power_opt_subset = self._farm_power_opt_subset
@@ -168,11 +167,12 @@ class YawOptimizationSR(YawOptimization):
         for iw in range(self._nwinddirections_subset):
             turbid = self.turbines_ordered_array_subset[iw, turbine_depth]  # Turbine to manipulate
 
-            # # Check if this turbine needs to be optimized. If not, continue
-            # if not self._turbs_to_opt_subset[iw, 0, turbid]:
-            #     continue
+            # Check if this turbine needs to be optimized. If not, continue
 
-            # # Remove turbines that need not be optimized
+            if not self._turbs_to_opt_subset[iw, 0, turbid]:
+                continue
+            #
+            # Remove turbines that need not be optimized
             # turbines_ordered = [ti for ti in turbines_ordered if ti in self.turbs_to_opt]
 
             # Grab yaw bounds from self
@@ -211,7 +211,7 @@ class YawOptimizationSR(YawOptimization):
         farm_powers = self._calc_powers_with_memory(evaluation_grid)
         return farm_powers
 
-    def optimize(self): 
+    def optimize(self):
         """
         Find the yaw angles that maximize the power production for every wind direction,
         wind speed and turbulence intensity.
@@ -223,7 +223,8 @@ class YawOptimizationSR(YawOptimization):
             for turbine_depth in range(self.nturbs):
                 p = 100.0 * ii / (len(self.Ny_passes) * self.nturbs)
                 ii += 1
-                print("[Serial Refine] Processing pass={:d}, turbine_depth={:d} ({:.1f} %)".format(Nii, turbine_depth, p))
+                print(
+                    "[Serial Refine] Processing pass={:d}, turbine_depth={:d} ({:.1f} %)".format(Nii, turbine_depth, p))
 
                 # Create grid to evaluate yaw angles for one turbine == turbine_depth
                 evaluation_grid = self._generate_evaluation_grid(pass_depth=Nii, turbine_depth=turbine_depth)
@@ -240,7 +241,7 @@ class YawOptimizationSR(YawOptimization):
                 yaw_angles_opt_new = np.squeeze(
                     np.take_along_axis(
                         evaluation_grid,
-                        np.expand_dims(args_opt, axis=3), 
+                        np.expand_dims(args_opt, axis=3),
                         axis=0
                     ),
                     axis=0
@@ -263,8 +264,8 @@ class YawOptimizationSR(YawOptimization):
 
                 # Update bounds for next iteration to close proximity of optimal solution
                 dx = (
-                    evaluation_grid[1, :, :, :] -
-                    evaluation_grid[0, :, :, :]
+                        evaluation_grid[1, :, :, :] -
+                        evaluation_grid[0, :, :, :]
                 )[ids]
                 self._yaw_lbs[ids] = np.clip(
                     yaw_angles_opt[ids] - 0.50 * dx,

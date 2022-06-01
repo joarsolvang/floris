@@ -31,16 +31,23 @@ First, we initialize our Floris Interface, and then generate a 3 turbine wind fa
 """
 
 # Load the default example floris object
-fi = FlorisInterface("inputs/gch.yaml") # GCH model matched to the default "legacy_gauss" of V2
+fi = FlorisInterface("inputs/corlacky.yaml") # GCH model matched to the default "legacy_gauss" of V2
 # fi = FlorisInterface("inputs/cc.yaml") # New CumulativeCurl model
 
 # Reinitialize as a 3-turbine farm with range of WDs and 1 WS
 D = 126.0 # Rotor diameter for the NREL 5 MW
-fi.reinitialize(
-    layout=[[0.0, 5 * D, 10 * D], [0.0, 0.0, 0.0]],
-    wind_directions=np.arange(0.0, 360.0, 3.0), 
-    wind_speeds=[8.0],
+
+
+N = 3  # Number of turbines per row and per column
+X, Y = np.meshgrid(
+    5.0 * D * np.arange(0, N, 1),
+    5.0 * D * np.arange(0, N, 1),
 )
+fi.reinitialize(layout=(X.flatten(), Y.flatten()))
+
+fi.reinitialize(
+    wind_directions=np.arange(0.0, 360.0, 3.0),
+    wind_speeds=[8.0],)
 
 print("Performing optimizations with SciPy...")
 start_time = timerpc()

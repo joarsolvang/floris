@@ -35,8 +35,8 @@ from floris.tools.visualization import visualize_cut_plane
 # """
 
 
-# Parameters
-wind_speed = 8.0
+# # Parameters
+# wind_speed = 8.0
 # ti = 0.06
 
 # Set to wide
@@ -110,7 +110,7 @@ for fm in floris_models:
     
     # Analyze the base case==================================================
     print('Loading: ',fm)
-    fi = FlorisInterface("inputs/%s.yaml" % fm)
+    fi = FlorisInterface(r"C:\Users\jsolvang\Documents\Github\floris\examples\inputs\%s.yaml" % fm)
 
     # Set the layout, wind direction and wind speed
     fi.reinitialize( layout=( X, Y ), wind_speeds=[wind_speed], wind_directions=[wind_direction], turbulence_intensity=turbulence_intensity )
@@ -136,7 +136,7 @@ for fm in floris_models:
 
     # Analyze the yawed case==================================================
     print('Loading: ',fm)
-    fi = FlorisInterface("inputs/%s.yaml" % fm)
+    fi = FlorisInterface(r"C:\Users\jsolvang\Documents\Github\floris\examples\inputs\%s.yaml" % fm)
 
     # Set the layout, wind direction and wind speed
     fi.reinitialize( layout=( X, Y ), wind_speeds=[wind_speed], wind_directions=[wind_direction], turbulence_intensity=turbulence_intensity )

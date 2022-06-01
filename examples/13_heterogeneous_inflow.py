@@ -18,6 +18,7 @@ import matplotlib.pyplot as plt
 from floris.tools import FlorisInterface
 from floris.tools.floris_interface import generate_heterogeneous_wind_map
 from floris.tools.visualization import visualize_cut_plane
+import numpy as np
 
 """
 This example showcases the heterogeneous inflow capabilities of FLORIS.
@@ -56,18 +57,11 @@ fi_2d.reinitialize(wind_shear=0.0)
 # Using the FlorisInterface functions for generating plots, run FLORIS
 # and extract 2D planes of data.
 horizontal_plane_2d = fi_2d.calculate_horizontal_plane(x_resolution=200, y_resolution=100, height=90.0)
-y_plane_2d = fi_2d.calculate_y_plane(x_resolution=200, z_resolution=100, crossstream_dist=0.0)
-cross_plane_2d = fi_2d.calculate_cross_plane(y_resolution=100, z_resolution=100, downstream_dist=500.0)
 
 # Create the plots
-fig, ax_list = plt.subplots(3, 1, figsize=(10, 8))
-ax_list = ax_list.flatten()
-visualize_cut_plane(horizontal_plane_2d, ax=ax_list[0], title="Horizontal", color_bar=True)
-ax_list[0].set_xlabel('x'); ax_list[0].set_ylabel('y')
-visualize_cut_plane(y_plane_2d, ax=ax_list[1], title="Streamwise profile", color_bar=True)
-ax_list[1].set_xlabel('x'); ax_list[1].set_ylabel('z')
-visualize_cut_plane(cross_plane_2d, ax=ax_list[2], title="Spanwise profile at 500m downstream", color_bar=True)
-ax_list[2].set_xlabel('y'); ax_list[2].set_ylabel('z')
+fig, ax_list = plt.subplots(figsize=(10, 8))
+visualize_cut_plane(horizontal_plane_2d, ax=ax_list, title="Horizontal", color_bar=True)
+ax_list.set_xlabel('x'); ax_list.set_ylabel('y')
 
 
 # Define the speed ups of the heterogeneous inflow, and their locations.
@@ -85,23 +79,26 @@ het_map_3d = generate_heterogeneous_wind_map(speed_ups, x_locs, y_locs, z_locs)
 # Also, pass the heterogeneous map into the FlorisInterface.
 fi_3d = FlorisInterface("inputs/gch.yaml", het_map=het_map_3d)
 
+# D = 126
+#
+# N = 7  # Number of turbines per row and per column
+# X, Y = np.meshgrid(
+#     5.0 * D * np.arange(0, N, 1),
+#     5.0 * D * np.arange(0, N, 1),
+# )
+# fi_3d.reinitialize(layout=(X.flatten(), Y.flatten()))
+
 # Set shear to 0.0 to highlight the heterogeneous inflow
 fi_3d.reinitialize(wind_shear=0.0)
 
 # Using the FlorisInterface functions for generating plots, run FLORIS
 # and extract 2D planes of data.
 horizontal_plane_3d = fi_3d.calculate_horizontal_plane(x_resolution=200, y_resolution=100, height=90.0)
-y_plane_3d = fi_3d.calculate_y_plane(x_resolution=200, z_resolution=100, crossstream_dist=0.0)
-cross_plane_3d = fi_3d.calculate_cross_plane(y_resolution=100, z_resolution=100, downstream_dist=500.0)
 
 # Create the plots
-fig, ax_list = plt.subplots(3, 1, figsize=(10, 8))
-ax_list = ax_list.flatten()
-visualize_cut_plane(horizontal_plane_3d, ax=ax_list[0], title="Horizontal", color_bar=True)
-ax_list[0].set_xlabel('x'); ax_list[0].set_ylabel('y')
-visualize_cut_plane(y_plane_3d, ax=ax_list[1], title="Streamwise profile", color_bar=True)
-ax_list[1].set_xlabel('x'); ax_list[1].set_ylabel('z')
-visualize_cut_plane(cross_plane_3d, ax=ax_list[2], title="Spanwise profile at 500m downstream", color_bar=True)
-ax_list[2].set_xlabel('y'); ax_list[2].set_ylabel('z')
+fig, ax_list = plt.subplots(1, figsize=(10, 8))
+visualize_cut_plane(horizontal_plane_3d, ax=ax_list, title="Horizontal", color_bar=True)
+ax_list.set_xlabel('x'); ax_list.set_ylabel('y')
+
 
 plt.show()

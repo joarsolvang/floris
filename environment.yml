@@ -1,0 +1,26 @@
+name: conda-floris
+channels:
+  - defaults
+dependencies:
+  - python
+  - attrs
+  - pyyaml
+  - numexpr
+  - numpy
+  - scipy
+  - matplotlib
+  - pandas
+  - scipy
+  - shapely
+  - pytest
+  - coloredlogs
+  - streamlit
+  - pip:
+    - --extra-index-url http://res-python-packages/
+    - --trusted-host res-python-packages 
+    - --extra-index-url https://test.pypi.org/simple/
+    - miniwake>=0.0.14
+    - msal
+    - schema
+    - python-dotenv
+    - git+https://github.com/resgroup/wind-farm-yield@dnv-api-comparison

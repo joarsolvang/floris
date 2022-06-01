@@ -1,11 +1,10 @@
-
-name: GCH
-description: Three turbines using Gauss Curl Hybrid model
+name: Althullion
+description: Althullion Optimisation
 floris_version: v3.0.0
 
 logging:
   console:
-    enable: true
+    enable: false
     level: WARNING
   file:
     enable: false
@@ -13,37 +12,71 @@ logging:
 
 solver:
   type: turbine_grid
-  turbine_grid_points: 3
+  turbine_grid_points: 5
 
 farm:
   layout_x:
-  - 0.0
-  - 630.0
-  - 1260.0
+  - 261486
+  - 261720
+  - 261247
+  - 261369
+  - 261834
+  - 261518
+  - 262169
+  - 262826
+  - 262109
+  - 261977
+  - 262298
+  - 262465
+  - 262587
+  - 262441
+  - 261592
+  - 261975
+  - 261701
+  - 262257
+  - 262143
+  - 261763
   layout_y:
-  - 0.0
-  - 0.0
-  - 0.0
+  - 412623
+  - 412572
+  - 413051
+  - 412854
+  - 412356
+  - 413268
+  - 413436
+  - 413702
+  - 413733
+  - 413180
+  - 413120
+  - 412752
+  - 413001
+  - 413692
+  - 413061
+  - 412634
+  - 412835
+  - 412556
+  - 412851
+  - 413452
   turbine_type:
-  - nrel_5MW
+  - W073a
 
 flow_field:
   air_density: 1.225
   reference_wind_height: -1 # -1 is code for use the hub height
-  turbulence_intensity: 0.06
+  turbulence_intensity: 0.07
   wind_directions:
   - 270.0
-  wind_shear: 0.12
+  wind_shear: 0.173
   wind_speeds:
   - 8.0
   wind_veer: 0.0
 
 wake:
   model_strings:
-    combination_model: sosfs
-    deflection_model: jimenez
+    combination_model: max
+    deflection_model: gauss
     turbulence_model: crespo_hernandez
-    velocity_model: cc
+    velocity_model: gauss
 
   enable_secondary_steering: true
   enable_yaw_added_recovery: true
