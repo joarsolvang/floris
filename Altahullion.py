@@ -9522,30 +9522,11 @@ if __name__ == "__main__":
     fig, ax = plt.subplots(1, figsize=(10, 8))
     visualize_cut_plane(horizontal_plane, ax=ax, title="Horizontal")
 
-    #
-    # # Re-initialise with secondary wind farms
-    # fi = FlorisInterface("examples/inputs/altahullion_plus_secondary_sites.yaml", het_map=het_map)
-    # fi.reinitialize(wind_speeds=ws_array, wind_directions=wd_array)
-    #
-    # # Scale up yaw array for all turbines
-    # opt_yaw_secondary = np.zeros(shape=(len(wd_array), len(ws_array), len(fi.layout_x)))
-    # opt_yaw_secondary[:, :, 0:len(opt_yaw[0, 0,:])] = opt_yaw
-    #
-    # # Calculate AEP of Althahulion + Secondary Sites
-    # aep_plus_secondary = fi.get_farm_AEP(freq, cut_in_wind_speed=3, cut_out_wind_speed=25)
-    #
-    # # Calculate AEP of just secondary wind farms
-    # fi = FlorisInterface("examples/inputs/secondary_sites.yaml", het_map=het_map)
-    # fi.reinitialize(wind_speeds=ws_array, wind_directions=wd_array)
-    # aep_secondary = fi.get_farm_AEP(freq, cut_out_wind_speed=25)
-    #
-    # # AEP Althahullion + Secondary Wakes
-    # aep_althahullion = aep_plus_secondary - aep_secondary
-    #
-    # # Calculate all sites with no wake steering
-    # aep_plus_secondary_no_steering = fi.get_farm_AEP(freq, cut_out_wind_speed=25)
-    # aep_althahullion_no_steering = aep_plus_secondary_no_steering - aep_secondary
-    #
-    # aep_increase = aep_althahullion/aep_althahullion_no_steering
+
+    # Re-initialise with secondary wind farms
+    fi = FlorisInterface("examples/inputs/altahullion_plus_secondary_sites.yaml", het_map=het_map)
+    fi.reinitialize(wind_speeds=ws_array, wind_directions=wd_array)
+    aep_plus_secondary = fi.get_farm_AEP(freq, cut_in_wind_speed=3, cut_out_wind_speed=25)
+
 
 
